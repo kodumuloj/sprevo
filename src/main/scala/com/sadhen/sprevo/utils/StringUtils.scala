@@ -24,4 +24,19 @@ object StringUtils {
       .replace("Ǔ", "Ux")
     w1
   }
+
+  def url2href(line: String): String = {
+    line.replace("<url ref", "<a href")
+      .replace("</url>", "</a>")
+  }
+
+  def removeBlankAndSpace(lines: String): String = {
+    def removeBlank(line: String): String = {
+      if (line.contains("  "))
+        removeBlank(line.replace("  ", " "))
+      else
+        line
+    }
+    removeBlank(lines.replace("\n", " "))
+  }
 }

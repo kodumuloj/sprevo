@@ -2,7 +2,6 @@ package com.sadhen.sprevo.utils
 
 import com.sadhen.sprevo.model.Vortaro
 import org.json4s._
-import org.json4s.JsonDSL._
 import org.json4s.native.JsonMethods._
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -13,7 +12,7 @@ import org.scalatest.{FlatSpec, Matchers}
   */
 class XmlTest extends FlatSpec with Matchers {
   it should "work" in {
-    val xmlTry = HttpUtils.getXmlByIndex(StringUtils.word2index("tamen"))
+    val xmlTry = HttpUtils.getXmlByIndex(StringUtils.word2index("salut"))
     xmlTry.recover { case e =>
       e.printStackTrace()
     }

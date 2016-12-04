@@ -14,10 +14,13 @@ object Translation {
     }
   }
 
-  def fromNodeSeq(nodeSeq: NodeSeq): Map[String, Translation] = {
-    nodeSeq
-      .map(Translation.fromNode)
-      .map(t => (t.lang, t))
-      .toMap
+  def fromNodeSeq(nodeSeq: NodeSeq): Option[Map[String, Translation]] = {
+    if (nodeSeq.isEmpty)
+      Option.empty
+    else
+      Option(nodeSeq
+        .map(Translation.fromNode)
+        .map(t => (t.lang, t))
+        .toMap)
   }
 }
