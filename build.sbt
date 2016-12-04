@@ -15,5 +15,6 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.7",
   "org.log4s" %% "log4s" % "1.1.5",
   "org.json4s" %% "json4s-native" % "3.5.0",
+  "org.mongodb.scala" %% "mongo-scala-driver" % "1.2.1",
   "org.scalatest" %% "scalatest" % "3.0.1"
 )
