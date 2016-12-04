@@ -9,7 +9,7 @@ case class Sense(definition: Option[Definition])
 
 object Sense {
   def fromNode(node: Node): Sense = {
-    val definition = node \\ "dif" find(_ => true) map(Definition.fromNode)
+    val definition = node \\ "dif" find(_ => true) map Definition.fromNode
     Sense(definition)
   }
 }
