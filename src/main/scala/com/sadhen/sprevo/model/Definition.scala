@@ -16,7 +16,7 @@ object Definition {
       case elem if elem.label == "ref" => elem.child.mkString
       case elem if elem.label == "tld" => elem.toString
     }.mkString
-    val ekzs = node \\ "ekz" map (Example.fromNode) toList
+    val ekzs = node \ "ekz" map (Example.fromNode) toList
     val examples = if (ekzs.isEmpty) Option.empty else Option(ekzs)
     Definition(StringUtils.removeBlankAndSpace(content), examples)
   }

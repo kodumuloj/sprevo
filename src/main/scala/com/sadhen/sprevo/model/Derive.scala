@@ -16,15 +16,15 @@ object Derive {
     val (base, body) = mark.span(_ != '.')
     val name = body.drop(1).replace("0", base)
 
-    val snc = node \\ "snc"
+    val snc = node \ "snc"
     val sense =
       if (snc.isEmpty)
         Option.empty
       else
         Option(snc map Sense.fromNode toList)
 
-    val trds = node \\ "trd"
-    val trdgrps = node \\ "trdgrp"
+    val trds = node \ "trd"
+    val trdgrps = node \ "trdgrp"
     val dict = Translation.fromNodeSeq(trds ++ trdgrps)
 
     Derive(name, sense, dict)

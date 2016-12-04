@@ -15,7 +15,7 @@ object Example {
       case elem if elem.label == "#PCDATA" && elem.text.exists(x => x.isLetter) => elem.text
       case elem if elem.label == "tld" => elem.toString
     }.mkString
-    val footnote = (node \\ "fnt").find(_ => true).map(Footnote.fromNode)
+    val footnote = (node \ "fnt").find(_ => true).map(Footnote.fromNode)
     Example(StringUtils.removeBlankAndSpace(sentence), footnote)
   }
 }
