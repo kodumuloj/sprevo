@@ -16,7 +16,7 @@ object MongoDB {
   val database: MongoDatabase = mongoClient.getDatabase("local")
   val collection: MongoCollection[Document] = database.getCollection("revo")
 
-  def insertOne(content: String) = {
+  def insertOne(content: String): Unit = {
     val observable = collection.insertOne(Document(content))
     Await.result(observable.toFuture(), Duration(10, TimeUnit.SECONDS))
   }
