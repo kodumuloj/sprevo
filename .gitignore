@@ -2,3 +2,5 @@
 target/
 .idea/
 logs/
+.ensime*
+project/target/

@@ -2,6 +2,7 @@ package com.sadhen.sprevo.model
 
 import scala.xml.Node
 import org.log4s._
+import scala.language.postfixOps
 
 /**
   * Created by rendong on 16/11/13.
@@ -15,6 +16,18 @@ object Derive {
     val mark = node \@ "mrk"
     val (base, body) = mark.span(_ != '.')
     val name = body.drop(1).replace("0", base)
+      .replace("CXcx", "Ĉ")
+      .replace("GXgx", "Ĝ")
+      .replace("HXhx", "Ĥ")
+      .replace("JXjx", "Ĵ")
+      .replace("SXsx", "Ŝ")
+      .replace("UXux", "Ǔ")
+      .replace("cx", "ĉ")
+      .replace("gx", "ĝ")
+      .replace("hx", "ĥ")
+      .replace("jx", "ĵ")
+      .replace("sx", "ŝ")
+      .replace("ux", "ǔ")
 
     val snc = node \ "snc"
     val sense =

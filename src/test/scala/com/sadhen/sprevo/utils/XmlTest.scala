@@ -30,4 +30,15 @@ class XmlTest extends FlatSpec with Matchers {
       println(pretty(render(parse(Vortaro.fromXml(xml).toString))))
     }
   }
+
+  "subsnc" should "be handled" in {
+    val xmlTry = HttpUtils.getXmlByIndex(StringUtils.word2index("fund"))
+
+    xmlTry.recover { case e =>
+      e.printStackTrace()
+    }
+    xmlTry.foreach { xml =>
+      println(pretty(render(parse(Vortaro.fromXml(xml).toString))))
+    }
+  }
 }

@@ -9,6 +9,7 @@ import org.json4s.DefaultFormats
 import scala.xml.Elem
 import org.log4s._
 import org.json4s.native.Serialization.write
+import scala.language.postfixOps
 
 
 /**
