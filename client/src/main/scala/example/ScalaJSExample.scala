@@ -5,11 +5,12 @@ import com.thoughtworks.binding.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.ext.Ajax
 import org.scalajs.dom.raw.Event
+import org.scalajs.dom.html.Input
+import shared.model.Vortaro
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
-import scala.scalajs.js.JSON
-
+import upickle.default._
 
 
 object ScalaJSExample extends js.JSApp {
@@ -20,22 +21,28 @@ object ScalaJSExample extends js.JSApp {
     * of requests to count.
     * @param data
     */
-  def countRequest(data: Var[String]) = {
-    val url = "http://localhost:9000/count"
+  def searchByIndex(data: Var[Vortaro], index: String) = {
+    val url = s"http://localhost:9000/index/$index"
     Ajax.get(url).onSuccess { case xhr =>
-      data := JSON.parse(xhr.responseText).count.toString
+      data := read[Vortaro](xhr.responseText)
+      println(data.get.version)
+      println(data.get.index)
+      data.get.derives.foreach(println)
     }
   }
 
   @dom
   def render = {
-    val data = Var("")
-    countRequest(data) // initial population
+    val data = Var(Vortaro.empty)
+    val input: Input = <input type="text" />
+    val search = {event: Event =>
+      if (input.value != "") {
+        searchByIndex(data, input.value)
+      }
+    }
     <div>
-      <button onclick={event: Event => countRequest(data) }>
-        Boop
-      </button>
-      From Play: The server has been booped { data.bind } times. Shared Message: {model.SharedMessages.itWorks}.
+      <div>{ input } <button onclick={ search }> Search </button></div>
+      <h2> { data.bind.index } </h2>
     </div>
   }
 

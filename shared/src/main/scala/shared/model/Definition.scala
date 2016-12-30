@@ -8,7 +8,7 @@ import shared.utils.StringUtils
 /**
   * Created by rendong on 16/12/4.
   */
-case class Definition(content: String, examples: Option[List[Example]])
+case class Definition(content: String, examples: List[Example])
 
 object Definition {
   def fromNode(node: Node): Definition = {
@@ -18,7 +18,7 @@ object Definition {
       case elem if elem.label == "tld" => elem.toString
     }.mkString
     val ekzs = node \ "ekz" map Example.fromNode toList
-    val examples = if (ekzs.isEmpty) Option.empty else Option(ekzs)
+    val examples = if (ekzs.isEmpty) List.empty else ekzs
     Definition(StringUtils.removeBlankAndSpace(content), examples)
   }
 }

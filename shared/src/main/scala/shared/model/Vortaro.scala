@@ -12,11 +12,13 @@ import scala.xml.Elem
   */
 case class Vortaro(index: String,
                    version: String,
-                   date: Long,
+                   date: String,
                    derives: List[Derive]) {
 }
 
 object Vortaro {
+  def empty = new Vortaro("", "", "", List.empty)
+
   def parseComment(xml: Elem): (String, String, LocalDateTime) = {
     val comment = xml \ "art" \@ "mrk"
     val parts = comment.split(" ")
@@ -35,7 +37,7 @@ object Vortaro {
 
     Vortaro(index,
       version,
-      date.toEpochSecond(ZoneOffset.UTC),
+      date.toEpochSecond(ZoneOffset.UTC).toString,
       derives)
   }
 }

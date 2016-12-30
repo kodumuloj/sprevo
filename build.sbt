@@ -1,4 +1,5 @@
 lazy val scalaV = "2.11.8"
+lazy val upickleV = "0.4.3"
 
 lazy val server = (project in file("server")).settings(
   scalaVersion := scalaV,
@@ -14,8 +15,9 @@ lazy val server = (project in file("server")).settings(
     "com.vmunier" %% "scalajs-scripts" % "1.0.0",
     "org.mongodb.scala" %% "mongo-scala-driver" % "1.2.1",
     "org.json4s" %% "json4s-native" % "3.5.0",
-    //"com.github.tototoshi" %% "play-json4s-native" % "0.5.0",
+    "com.github.tototoshi" %% "play-json4s-native" % "0.5.0",
     //"com.github.tototoshi" %% "play-json4s-test-native" % "0.5.0" % Test,
+    "com.lihaoyi" %% "upickle" % upickleV,
     "org.scalatest" %% "scalatest" % "3.0.1" % Test,
     specs2 % Test
   ),
@@ -35,6 +37,7 @@ lazy val client = (project in file("client")).settings(
     "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.6",
     "com.thoughtworks.binding" %%% "dom" % "10.0.0-M1",
     "com.thoughtworks.binding" %%% "futurebinding" % "10.0.0-M1",
+    "com.lihaoyi" %%% "upickle" % upickleV,
     "fr.hmil" %%% "roshttp" % "1.1.0"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).

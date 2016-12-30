@@ -5,6 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index
 
+GET     /index/:index               controllers.Revo.index(index: String)
+
 # Count Controller
 GET     /count                      controllers.CountController.count
 # Map static resources from the /public folder to the /assets URL path
