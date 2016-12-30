@@ -1,3 +1,3 @@
 # Sprevo
 
-A restful service built with [rho](https://github.com/http4s/rho) for providing json api of Reta-Vortaro.
+Redesign Reta-Vortaro using Play Framework and Binding.scala.
