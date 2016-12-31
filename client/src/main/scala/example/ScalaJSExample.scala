@@ -35,13 +35,40 @@ object ScalaJSExample extends js.JSApp {
   def render = {
     val data = Var(Vortaro.empty)
     val input: Input = <input type="text" />
+    val input2: Input = <input class="prompt" type="text" placeholder="Common passwords..." />
     val search = {event: Event =>
       if (input.value != "") {
         searchByIndex(data, input.value)
       }
     }
     <div>
-      <div>{ input } <button onclick={ search }> Search </button></div>
+      <select class="ui search dropdown">
+        <option>State</option>
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="DC">District Of Columbia</option>
+        <option value="FL">Florida</option>
+      </select>
+      <button class="ui primary button">
+        Save
+      </button>
+      <button class="ui button">
+        Discard
+      </button>
+      <div class="ui dropdown">
+        <div class="text">File</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">New</div>
+        </div>
+      </div>
+      <div>{ input } <button onclick={ search } style="background"> Search </button></div>
       <h2> { data.bind.index } </h2>
     </div>
   }

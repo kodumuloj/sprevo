@@ -4,10 +4,10 @@ import javax.inject._
 
 import play.api.mvc._
 
-class Application @Inject() extends Controller {
+class Application @Inject() (webJarAssets: WebJarAssets) extends Controller {
 
   def index = Action {
-    Ok(views.html.index("it works"))
+    Ok(views.html.index(webJarAssets))
   }
 
 }
