@@ -11,7 +11,19 @@ import shared.model.Vortaro
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 import upickle.default._
+import org.scalajs.jquery.{JQuery, jQuery}
+import scala.language.implicitConversions
 
+object SemanticUI {
+  @js.native
+  trait SemanticJQuery extends JQuery {
+    def accordion(params: js.Any*): SemanticJQuery = js.native
+    def dropdown(params: js.Any*): SemanticJQuery = js.native
+    def checkbox(): SemanticJQuery = js.native
+  }
+
+  implicit def jq2bootstrap(jq: JQuery): SemanticJQuery = jq.asInstanceOf[SemanticJQuery]
+}
 
 object ScalaJSExample extends js.JSApp {
 
@@ -75,5 +87,7 @@ object ScalaJSExample extends js.JSApp {
 
   def main(): Unit = {
     dom.render(document.body, render)
+    import SemanticUI._
+    jQuery(".ui.dropdown").dropdown(js.Dynamic.literal(on = "hover"))
   }
 }

@@ -1,6 +1,6 @@
 lazy val scalaV = "2.11.8"
 lazy val upickleV = "0.4.3"
-lazy val jQueryV = "3.1.1"
+lazy val jQueryV = "2.1.3"
 lazy val semanticV = "2.2.2"
 
 lazy val server = (project in file("server")).settings(
@@ -47,6 +47,7 @@ lazy val client = (project in file("client")).settings(
     "com.thoughtworks.binding" %%% "dom" % "10.0.0-M1",
     "com.thoughtworks.binding" %%% "futurebinding" % "10.0.0-M1",
     "com.lihaoyi" %%% "upickle" % upickleV,
+    "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
     "fr.hmil" %%% "roshttp" % "1.1.0"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
