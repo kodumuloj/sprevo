@@ -6,7 +6,7 @@ import scala.xml.Node
 /**
   * Created by rendong on 16/11/13.
   */
-case class Derive(name: String, sense: Option[List[Sense]], dict: Option[Map[String, Translation]])
+case class Derive(name: String, sense: List[Sense], dict: Map[String, Translation])
 
 object Derive {
   def fromNode(node: Node): Derive = {
@@ -29,9 +29,9 @@ object Derive {
     val snc = node \ "snc"
     val sense =
       if (snc.isEmpty)
-        Option.empty
+        List.empty
       else
-        Option(snc map Sense.fromNode toList)
+        snc map Sense.fromNode toList
 
     val trds = node \ "trd"
     val trdgrps = node \ "trdgrp"

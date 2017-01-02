@@ -14,6 +14,6 @@ object Sense {
     val trds = node \ "trd"
     val trdgrps = node \ "trdgrp"
     val dict = Translation.fromNodeSeq(trds ++ trdgrps)
-    Sense(definition, dict.getOrElse(Map.empty))
+    Sense(definition, dict)
   }
 }
