@@ -3,16 +3,17 @@ package revo
 import com.thoughtworks.binding.Binding.{Var, Vars}
 import com.thoughtworks.binding.dom
 import shared.model._
+import shared.utils.StringUtils
 
 /**
   * Created by rendong on 17/1/2.
   */
-object Content {
+case class Content(index: String) {
   @dom
   def showExample(example: Example) = {
     <div class="item">
       <i class="comment icon"></i>
-      { example.sentence }
+      { StringUtils.showIndex(example.sentence, index) }
     </div>
   }
 
@@ -21,7 +22,7 @@ object Content {
     if (definition.isDefined)
       <div class="content">
         <div class="header">
-          { definition.get.content }
+          { StringUtils.showIndex(definition.get.content, index) }
         </div>
         <div class="description">
           { Vars(definition.get.examples: _*).map(example => showExample(example).bind) }

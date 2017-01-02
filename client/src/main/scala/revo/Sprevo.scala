@@ -24,7 +24,7 @@ object Sprevo extends js.JSApp {
     * @param data
     */
   def searchByIndex(data: Var[Vortaro], index: String) = {
-    val url = s"http://localhost:9000/index/$index"
+    val url = s"http://localhost:8080/index/$index"
     Ajax.get(url).onSuccess { case xhr =>
       data := read[Vortaro](xhr.responseText)
       println(data.get.version)
@@ -54,7 +54,7 @@ object Sprevo extends js.JSApp {
         </div>
       </div>
       <div class="ui segment">
-        { Content.showVortaro(data).bind }
+        { Content(data.bind.index).showVortaro(data).bind }
       </div>
     </div>
   }

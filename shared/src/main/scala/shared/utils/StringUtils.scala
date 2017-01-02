@@ -39,4 +39,14 @@ object StringUtils {
     }
     removeBlank(lines.replace("\n", " "))
   }
+
+  def showIndex(content: String, index: String): String =
+    content.replace("<tld/>", index)
+      .replaceAll("<tld lit=\".*\"/>", index.take(1).toUpperCase + index.drop(1))
+      .replace("ĈCx", "Ĉ")
+      .replace("ĜGx", "Ĝ")
+      .replace("ĤHx", "Ĥ")
+      .replace("ĴJx", "Ĵ")
+      .replace("ŜSx", "Ŝ")
+      .replace("ǓUx", "Ǔ")
 }
