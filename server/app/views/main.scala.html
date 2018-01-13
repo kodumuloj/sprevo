@@ -1,4 +1,6 @@
-@(title: String, webJarAssets: WebJarAssets)(content: Html)
+@import org.webjars.play.WebJarsUtil
+
+@(title: String, webJarsUtil: WebJarsUtil)(content: Html)
 
 <!DOCTYPE html>
 
@@ -7,9 +9,10 @@
     <title>@title</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-    <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("semantic.min.css"))'>
+    @webJarsUtil.locate("semantic.min.css").css()
   </head>
   <body>
-   @content
+    @content
+    @import_scalajs("Sprevo")
   </body>
 </html>

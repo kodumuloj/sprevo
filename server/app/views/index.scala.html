@@ -1,4 +1,5 @@
-@(webJarAssets: WebJarAssets)
+@import org.webjars.play.WebJarsUtil
+@(webJarAssets: WebJarsUtil)
 
 @main("Play with Scala.js", webJarAssets) {
   @scalajs.html.scripts("client",

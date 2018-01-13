@@ -15,7 +15,7 @@ import org.scalajs.jquery.jQuery
 
 import scala.language.implicitConversions
 
-object Sprevo extends js.JSApp {
+object Sprevo {
 
 
   /**
@@ -24,7 +24,7 @@ object Sprevo extends js.JSApp {
     * @param data
     */
   def searchByIndex(data: Var[Vortaro], index: String) = {
-    val url = s"http://localhost:8080/index/$index"
+    val url = s"http://localhost:9000/index/$index"
     Ajax.get(url).onSuccess { case xhr =>
       data := read[Vortaro](xhr.responseText)
       println(data.get.version)
@@ -59,7 +59,7 @@ object Sprevo extends js.JSApp {
     </div>
   }
 
-  def main(): Unit = {
+  def main(args: Array[String]): Unit = {
     dom.render(document.body, render)
     import SemanticUI._
     jQuery(".ui.dropdown").dropdown(js.Dynamic.literal(on = "hover"))
