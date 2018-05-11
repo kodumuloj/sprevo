@@ -3,6 +3,7 @@ package shared.model
 import shared.utils.StringUtils
 
 import scala.xml.Node
+import upickle.default.{ReadWriter => RW, macroRW}
 
 /**
   * Created by rendong on 16/12/4.
@@ -11,6 +12,8 @@ case class Footnote(content: Option[String], author: Option[String], work: Optio
 
 
 object Footnote {
+  implicit def rw: RW[Footnote] = macroRW
+
   def fromNode(node: Node): Footnote = {
     val ct = node.child.collect {
       case elem if elem.label == "#PCDATA" && elem.text.exists(x => x.isLetter) => elem.text

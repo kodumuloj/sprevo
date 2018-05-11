@@ -2,6 +2,7 @@ package shared.model
 
 import scala.language.postfixOps
 import scala.xml.Node
+import upickle.default.{ReadWriter => RW, macroRW}
 
 /**
   * Created by rendong on 16/11/13.
@@ -9,6 +10,8 @@ import scala.xml.Node
 case class Derive(name: String, sense: List[Sense], dict: Map[String, Translation])
 
 object Derive {
+  implicit def rw: RW[Derive] = macroRW
+
   def fromNode(node: Node): Derive = {
     val mark = node \@ "mrk"
     val (base, body) = mark.span(_ != '.')

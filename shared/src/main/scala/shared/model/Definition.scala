@@ -4,6 +4,7 @@ import scala.xml.Node
 import scala.language.postfixOps
 
 import shared.utils.StringUtils
+import upickle.default.{ReadWriter => RW, macroRW}
 
 /**
   * Created by rendong on 16/12/4.
@@ -11,6 +12,8 @@ import shared.utils.StringUtils
 case class Definition(content: String, examples: List[Example])
 
 object Definition {
+  implicit def rw: RW[Definition] = macroRW
+
   def fromNode(node: Node): Definition = {
     val content = node.child.collect {
       case elem if elem.label == "#PCDATA" && elem.text.exists(x => x.isLetter) => elem.text

@@ -1,6 +1,7 @@
 package shared.model
 
 import scala.xml.{Node, NodeSeq}
+import upickle.default.{ReadWriter => RW, macroRW}
 
 /**
   * Created by rendong on 16/11/13.
@@ -8,6 +9,8 @@ import scala.xml.{Node, NodeSeq}
 case class Translation(lang: String, content: List[String])
 
 object Translation {
+  implicit def rw: RW[Translation] = macroRW
+
   def fromNode(node: Node): Translation = {
     node.label match {
       case "trd" => Translation(node \@ "lng", List(node.text))

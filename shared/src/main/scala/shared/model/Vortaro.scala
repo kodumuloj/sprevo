@@ -5,6 +5,7 @@ import java.time.{LocalDateTime, ZoneOffset}
 
 import scala.language.postfixOps
 import scala.xml.Elem
+import upickle.default.{ReadWriter => RW, macroRW}
 
 
 /**
@@ -17,6 +18,8 @@ case class Vortaro(index: String,
 }
 
 object Vortaro {
+  implicit def rw: RW[Vortaro] = macroRW
+
   def empty = new Vortaro("", "", "", List.empty)
 
   def parseComment(xml: Elem): (String, String, LocalDateTime) = {

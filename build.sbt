@@ -1,5 +1,5 @@
-lazy val scalaV = "2.11.12"
-lazy val upickleV = "0.4.3"
+lazy val scalaV = "2.12.6"
+lazy val upickleV = "0.6.5"
 lazy val jQueryV = "2.1.3"
 lazy val semanticV = "2.2.2"
 
@@ -13,7 +13,6 @@ lazy val server = (project in file("server")).settings(
   libraryDependencies += guice,
   libraryDependencies ++= Seq(
     "com.vmunier" %% "scalajs-scripts" % "1.1.1",
-    "org.mongodb.scala" %% "mongo-scala-driver" % "1.2.1",
     "org.json4s" %% "json4s-native" % "3.5.0",
     "com.github.tototoshi" %% "play-json4s-native" % "0.8.0",
     //"com.github.tototoshi" %% "play-json4s-test-native" % "0.8.0" % Test,
@@ -37,7 +36,7 @@ lazy val client = (project in file("client")).settings(
     "org.webjars" % "Semantic-UI" % semanticV / "semantic.js" minified "semantic.min.js" dependsOn "jquery.js"
   ),
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+    "org.scala-js" %%% "scalajs-dom" % "0.9.2",
     "org.scala-lang.modules" %% "scala-xml" % "1.0.6",
     "com.thoughtworks.binding" %%% "dom" % "10.0.2",
     "com.thoughtworks.binding" %%% "futurebinding" % "10.0.2",
@@ -52,6 +51,7 @@ lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).
   settings(
     scalaVersion := scalaV,
     libraryDependencies ++= Seq(
+      "com.lihaoyi" %% "upickle" % upickleV,
       "org.scala-lang.modules" %% "scala-xml" % "1.0.6"
     )
   ).jsConfigure(_ enablePlugins ScalaJSWeb)
